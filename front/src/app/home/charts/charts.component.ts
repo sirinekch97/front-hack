@@ -92,60 +92,47 @@ export class ChartsComponent implements OnInit {
   ngOnInit() {
     this.allTemp()
     this.allHumid()
-    this.allRain();
    
   }
-allTemp(){
-  this.sensorService.getAllTemp().subscribe(user => {
-    this.tempList = user;
-    console.log(this.tempList)
-    this.aa=this.dataSources;
-    this.p=this.aa.data[0].value 
-    for(let i =0;i<this.tempList.length;i++){
-      this.element=this.tempList[i]
-      console.log("elt",this.element)
-      console.log("heree",this.p)
-      this.aa.data.push({label:this.element.name,value:[this.element.TemperatureMesure]})
-
-      //this.p.value.push(this.element.TemperatureMesure)
-      //this.p.label=this.element.name
-    }
-
- 
-
-})
-}
-allHumid(){
-  this.sensorService.getAllHmid().subscribe(res=>{
-    console.log("okkkk",res)
-    this.listeHumid=res
-    this.aa=this.dataSources2;
-    this.p=this.aa.data[0].value 
-    for(let i =0;i<this.listeHumid.length;i++){
-      this.element=this.listeHumid[i]
-      console.log("elt",this.element)
-      console.log("heree",this.p)
-      this.aa.data.push({label:this.element.name,value:[this.element.HumidityMesure]})
-    }
-
- 
-  })
-}
-  allRain(){
-    this.sensorService.getAllRain().subscribe(res=>{
-      console.log("okkkk",res)
-      this.listerain=res
-      this.aa=this.dataSources3;
-      this.p=this.aa.data[0].value 
-      for(let i =0;i<this.listerain.length;i++){
-        this.element=this.listerain[i]
-        console.log("elt",this.element)
-        console.log("heree",this.p)
-        this.aa.data.push({label:this.element.name,value:[this.element.RainMesure]})
+  allTemp(){
+    this.sensorService.getAllTemp().subscribe(user => {
+      this.tempList = user;
+      console.log(this.tempList)
+      
+      this.aa=this.dataSources
+      for(let i =0;i<20;i++){
+        this.element=this.tempList[i].TemperaturMesure
+        //console.log("elt",this.element)
+        //console.log("tab",this.aa)
+        this.aa.data.push({label:this.tempList[i].name,value:[this.element]})
+  //console.log(this.aa)
+        //this.p.value.push(this.element.TemperatureMesure)
+        //this.p.label=this.element.name
       }
   
    
+  
+  })
+  }
+  allHumid(){
+    this.sensorService.getAllHmid().subscribe(data=>{
+      this.listeHumid = data;
+      console.log(this.listeHumid)
+      
+      this.aa=this.dataSources2
+      for(let j =0;j<20;j++){
+        this.element=this.listeHumid[j].Humiditymesure
+  
+        console.log("elt",this.element.Humiditymesure)
+        console.log("tab",this.aa)
+        this.aa.data.push({label:this.listeHumid[j].name,value:[this.element]})
+  console.log(this.aa)
+        
+      }
+  
+  
+   
     })
-}
+  }
 
 }

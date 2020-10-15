@@ -8,16 +8,25 @@ import { SensorService } from 'src/app/service/sensor.service';
 })
 export class GestionsensorComponent implements OnInit {
   tempList
+  humidList
   constructor(private sensorService:SensorService) { }
 
   ngOnInit() {
     this.allTemp()
+    this.allHumid()
   }
 
   allTemp(){
-    this.sensorService.getAllTemp().subscribe(user => {
-      this.tempList = user;
-      console.log(this.tempList)
+    this.sensorService.getAllTemp().subscribe(data => {
+      this.tempList = data;
+      console.log("find",this.tempList)
+    
+  
+  })
+  }
+  allHumid(){
+    this.sensorService.getAllHmid().subscribe(data => {
+      this.humidList = data;
     
   
   })
